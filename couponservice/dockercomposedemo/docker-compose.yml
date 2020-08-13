@@ -1,0 +1,21 @@
+version: "3.3"
+services:
+    web:
+        image: httpd
+        container_name: mywebserver
+        networks: # Path to the network created
+            - webnetwork
+        ports:
+            - "8080:80"
+        volumes: # Add volumes
+            - type: volume
+              source: myvol
+              target: data
+# Add network
+networks:
+    webnetwork:
+        driver: bridge
+    dbnetwork:
+        driver: bridge
+volumes:
+    myvol:
